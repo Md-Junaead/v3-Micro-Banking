@@ -61,4 +61,7 @@ class RoutesName {
 
   //UserScreen routes name
   static const String userScreen = 'UserScreen';
+
+  //StartedScreen routes name
+  static const String startedScreen = 'StartedScreen';
 }

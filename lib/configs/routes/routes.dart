@@ -18,6 +18,7 @@ import 'package:v1_micro_finance/screens/profile/profile.dart';
 import 'package:v1_micro_finance/screens/splash_screen.dart';
 import 'package:v1_micro_finance/screens/bottom/statement_screen.dart';
 import 'package:v1_micro_finance/screens/auth/verification.dart';
+import 'package:v1_micro_finance/screens/started_screen.dart';
 import 'package:v1_micro_finance/screens/withdraw/bank_withdrawal_screen.dart';
 import 'package:v1_micro_finance/screens/withdraw/crypto_withdrawal_screen.dart';
 import 'package:v1_micro_finance/test/test.dart';
@@ -108,6 +109,10 @@ class Routes {
       case RoutesName.userScreen:
         return MaterialPageRoute(
             builder: (BuildContext context) => UserScreen());
+
+      case RoutesName.startedScreen:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => StartedScreen());
 
       default:
         return MaterialPageRoute(builder: (_) {

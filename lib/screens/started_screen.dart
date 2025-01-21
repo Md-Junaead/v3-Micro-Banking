@@ -21,9 +21,9 @@ class StartedScreen extends StatelessWidget {
                 viewportFraction: 1.0,
               ),
               items: [
-                'assets/images/demo1.jpg',
-                'assets/images/demo2.jpg',
-                'assets/images/demo3.jpg',
+                'assets/images/image_one.jpeg',
+                'assets/images/image_one.jpeg',
+                'assets/images/image_one.jpeg',
               ].map((imagePath) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(

@@ -21,6 +21,7 @@ dependencies:
   image_picker: ^1.1.2
   http_parser: ^4.1.2
   url_launcher: ^6.0.9
+  carousel_slider: ^5.0.0
 
 # Developer dependencies for testing and linting
 dev_dependencies:

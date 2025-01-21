@@ -85,14 +85,14 @@ class HomeScreen extends StatelessWidget {
                   const Icon(
                     Icons.account_balance, // Dashboard icon
                     size: 80, // Icon size
-                    color: Colors.blueAccent, // Icon color
+                    color: Color(0xFF06426D), // Icon color
                   ),
                   const SizedBox(width: 10), // Spacing between icon and text
                   const Text(
                     "Dashboard", // Dashboard title
                     style: TextStyle(
                       fontSize: 30, // Font size
-                      color: Colors.blueAccent, // Text color
+                      color: Color(0xFF06426D), // Text color
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -130,7 +130,7 @@ class HomeScreen extends StatelessWidget {
                 child: Container(
                   // Button appearance
                   decoration: BoxDecoration(
-                    color: Colors.blueAccent, // Background color
+                    color: Color(0xFF06426D), // Background color
                     borderRadius: BorderRadius.circular(10), // Rounded corners
                   ),
                   child: Column(

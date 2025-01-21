@@ -6,8 +6,11 @@ class ForgotPasswordScreen extends StatelessWidget {
     return Scaffold(
       // AppBar with a title
       appBar: AppBar(
-        title: Text('Forgot Password'),
-        backgroundColor: Colors.blue,
+        title: Text(
+          'Forgot Password',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Color(0xFF06426D),
       ),
 
       // Body of the screen
@@ -22,6 +25,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
+                color: Color(0xFF06426D),
               ),
               textAlign: TextAlign.center,
             ),

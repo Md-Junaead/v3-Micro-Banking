@@ -36,7 +36,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                 SizedBox(width: 10),
                 Text("Withdraw Balance",
                     style: TextStyle(
-                        color: Colors.blueAccent,
+                        color: Color(0xFF06426D),
                         fontSize: 25,
                         fontWeight: FontWeight.bold)),
               ],
@@ -70,7 +70,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                     context,
                     icon: Icons.account_balance,
                     label: 'Bank',
-                    color: Colors.blueAccent,
+                    color: Color(0xFF06426D),
                     targetScreen: BankWithdrawalScreen(),
                   ),
 
@@ -79,7 +79,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                     context,
                     icon: Icons.currency_bitcoin,
                     label: 'Crypto',
-                    color: Colors.blueAccent,
+                    color: Color(0xFF06426D),
                     targetScreen: CryptoWithdrawalScreen(),
                   ),
                 ],
@@ -99,7 +99,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: Colors.black, width: 1),
-        color: Colors.blueAccent,
+        color: Color(0xFF06426D),
       ),
       child: Column(
         children: [

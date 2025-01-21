@@ -64,4 +64,10 @@ class RoutesName {
 
   //StartedScreen routes name
   static const String startedScreen = 'StartedScreen';
+
+  //BottomNavBar routes name
+  static const String bottomNavBar = 'BottomNavBar';
+
+  //AppDrawerScreen routes name
+  static const String appDrawer = 'AppDrawer';
 }

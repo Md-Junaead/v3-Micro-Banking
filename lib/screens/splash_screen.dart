@@ -1,6 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:v1_micro_finance/screens/auth/signin_screen.dart';
+import 'package:v1_micro_finance/configs/routes/routes_name.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,37 +11,44 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _navigateToNextScreen();
-  }
-
-  // Function to navigate to the home screen after a delay
-  void _navigateToNextScreen() async {
-    await Future.delayed(Duration(seconds: 3)); // Splash screen duration
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-          builder: (context) => SignInScreen()), // Navigate to HomeScreen
-    );
+    Timer(Duration(seconds: 5), () {
+      Navigator.pushNamed(context,
+          RoutesName.startedScreen); // Change '/home' to your next screen
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    // Setting the preferred orientation to portrait only
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-
     return Scaffold(
-      backgroundColor: Colors.blue, // Splash screen background color
-      appBar: AppBar(
-        title: Text("Splash Screen"), // App Bar with a title
-        backgroundColor: Colors.blue, // App bar color
-      ),
+      backgroundColor: Color(0xFF06426D), // Bank theme color
       body: Center(
-        child: Text(
-          "Welcome to MyApp", // Text for the splash screen
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+        child: TweenAnimationBuilder(
+          tween: Tween<double>(begin: 0, end: 1),
+          duration: Duration(seconds: 2),
+          builder: (context, double opacity, child) {
+            return Opacity(
+              opacity: opacity,
+              child: Transform.translate(
+                offset: Offset(0, 50 * (1 - opacity)),
+                child: child,
+              ),
+            );
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.account_balance, size: 100, color: Colors.white),
+              SizedBox(height: 20),
+              Text(
+                "Welcome to Your Bank",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontFamily: 'Averia Libre',
+                ),
+              ),
+            ],
           ),
         ),
       ),

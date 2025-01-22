@@ -58,42 +58,28 @@ class _BankWithdrawalScreenState extends State<BankWithdrawalScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(
+            kToolbarHeight + MediaQuery.of(context).size.height * 0.03),
+        child: AppBar(
+          centerTitle: true,
+          title: Padding(
+            padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height *
+                    0.03), // Moves text 5% down
+            child: const Text("Crypto Withdraw"),
+          ),
+          backgroundColor: Color(0xFF06426D),
+          titleTextStyle: TextStyle(
+              color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(25)),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Part One: Withdrawal Balance Button
-            Center(
-              child: Container(
-                margin: EdgeInsets.only(
-                    top:
-                        MediaQuery.of(context).size.height * 0.08), // 8% margin
-                width: MediaQuery.of(context).size.width * 0.84, // 84% width
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                decoration: BoxDecoration(
-                  border:
-                      Border.all(color: Colors.black, width: 1), // Black border
-                  borderRadius: BorderRadius.circular(10), // Rounded corners
-                  color: Colors.white, // White background
-                ),
-                child: Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center, // Center contents
-                  children: const [
-                    Icon(Icons.credit_card, color: Colors.amber), // Icon
-                    SizedBox(width: 10), // Space between icon and text
-                    Text(
-                      "Bank Withdrawal",
-                      style: TextStyle(
-                        color: Colors.blueAccent, // Blue accent color for text
-                        fontSize: 25, // Font size
-                        fontWeight: FontWeight.bold, // Bold text
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
             // Part Two: Bank Withdrawal Form
             SizedBox(
                 height: MediaQuery.of(context).size.height * 0.1), // 10% margin

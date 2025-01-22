@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:v1_micro_finance/configs/routes/routes_name.dart';
+import 'package:v1_micro_finance/providers/navigation_provider.dart';
 import 'package:v1_micro_finance/screens/bottom/about_us_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/check_balance_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/deposit_screen.dart';
@@ -18,9 +19,12 @@ import 'package:v1_micro_finance/screens/profile/profile.dart';
 import 'package:v1_micro_finance/screens/splash_screen.dart';
 import 'package:v1_micro_finance/screens/bottom/statement_screen.dart';
 import 'package:v1_micro_finance/screens/auth/verification.dart';
+import 'package:v1_micro_finance/screens/started_screen.dart';
 import 'package:v1_micro_finance/screens/withdraw/bank_withdrawal_screen.dart';
 import 'package:v1_micro_finance/screens/withdraw/crypto_withdrawal_screen.dart';
 import 'package:v1_micro_finance/test/test.dart';
+import 'package:v1_micro_finance/widgets/app_drawer.dart';
+import 'package:v1_micro_finance/widgets/bottom_nav_bar.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -108,6 +112,18 @@ class Routes {
       case RoutesName.userScreen:
         return MaterialPageRoute(
             builder: (BuildContext context) => UserScreen());
+
+      case RoutesName.startedScreen:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => StartedScreen());
+
+      case RoutesName.bottomNavBar:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => BottomNavBar());
+
+      case RoutesName.appDrawer:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => AppDrawer());
 
       default:
         return MaterialPageRoute(builder: (_) {

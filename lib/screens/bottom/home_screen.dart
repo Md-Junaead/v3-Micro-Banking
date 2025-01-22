@@ -1,162 +1,146 @@
 import 'package:flutter/material.dart';
 import 'package:v1_micro_finance/screens/auth/signin_screen.dart';
-import 'package:v1_micro_finance/screens/dashboard/deposit_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/check_balance_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/packages_screen.dart';
-import 'package:v1_micro_finance/screens/dashboard/quick_loan_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/referrals_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/withdraw_screen.dart';
 import 'package:v1_micro_finance/test/test.dart';
+import 'package:v1_micro_finance/widgets/appbar.dart';
 
-// Main entry point of the application
 void main() {
   runApp(const MicroFinance());
 }
 
-// Root widget of the application
 class MicroFinance extends StatelessWidget {
   const MicroFinance({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Disable debug banner in the app
+      debugShowCheckedModeBanner: false, // Hide debug banner
+      home: const HomeScreen(), // Set HomeScreen as the main screen
     );
   }
 }
 
-// Home screen of the app
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  // Placeholder values for profile name, image, and balance
+  String profileName = "User Name";
+  String profileImageUrl =
+      "https://via.placeholder.com/150"; // Placeholder profile image URL
+  bool isBalanceVisible = false; // Flag to toggle balance visibility
+  String balanceAmount = "\$1000"; // Placeholder balance value
+
+  // Function to toggle balance visibility
+  void toggleBalance() {
+    setState(() {
+      isBalanceVisible = !isBalanceVisible; // Toggle the visibility state
+    });
+  }
+
+  // Demo API call to simulate fetching balance
+  Future<String> fetchBalance() async {
+    await Future.delayed(const Duration(seconds: 2)); // Simulate delay
+    return "\$1500"; // Return a dummy balance after the delay
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // List of buttons with their icons, text, and respective screens
+    // List of buttons with icon, text, and the screen it navigates to
     final List<Map<String, dynamic>> buttons = [
+      {"icon": Icons.attach_money, "text": "Deposit", "screen": TestScreen()},
       {
-        "icon": Icons.attach_money, // Icon for "Add Money"
-        "text": "Deposite", // Text label
-        "screen": TestScreen(), // Target screen for navigation
-      },
-      {
-        "icon": Icons.account_balance, // Icon for "Check Balance"
+        "icon": Icons.account_balance,
         "text": "Check Balance",
-        "screen": CheckBalanceScreen(),
+        "screen": CheckBalanceScreen()
       },
+      {"icon": Icons.money_off, "text": "Withdraw", "screen": WithdrawScreen()},
+      {"icon": Icons.people, "text": "Referrals", "screen": ReferralsScreen()},
+      {"icon": Icons.speed, "text": "Quick Loan", "screen": SignInScreen()},
       {
-        "icon": Icons.money_off, // Icon for "Withdraw"
-        "text": "Withdraw",
-        "screen": WithdrawScreen(),
-      },
-      {
-        "icon": Icons.people, // Icon for "Referrals"
-        "text": "Referrals",
-        "screen": ReferralsScreen(),
-      },
-      {
-        "icon": Icons.speed, // Icon for "Quick Loan"
-        "text": "Quick Loan",
-        "screen": SignInScreen(),
-      },
-      {
-        "icon": Icons.card_giftcard, // Icon for "Packages"
+        "icon": Icons.card_giftcard,
         "text": "Packages",
-        "screen": PackagesScreen(),
+        "screen": PackagesScreen()
       },
     ];
 
+    // Scaffold widget provides the app's structure
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(120), // Adjust AppBar height
-        child: Container(
-          margin: const EdgeInsets.only(top: 60), // Move AppBar 80px down
-          child: AppBar(
-            automaticallyImplyLeading: false,
-            // AppBar with custom title layout
-            title: Padding(
-              padding: const EdgeInsets.only(
-                left: 1, // Left padding for the title
-                right: 1, // Right padding for the title
-                top: 1, // Top padding for the title
-                bottom: 1, // Bottom padding for the title
-              ),
-              child: Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.center, // Center-align title
-                children: [
-                  const Icon(
-                    Icons.account_balance, // Dashboard icon
-                    size: 80, // Icon size
-                    color: Colors.blueAccent, // Icon color
-                  ),
-                  const SizedBox(width: 10), // Spacing between icon and text
-                  const Text(
-                    "Dashboard", // Dashboard title
-                    style: TextStyle(
-                      fontSize: 30, // Font size
-                      color: Colors.blueAccent, // Text color
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            centerTitle: true, // Center the AppBar title
-          ),
-        ),
+      // Custom AppBar with necessary profile data
+      appBar: CustomAppBar(
+        profileName: profileName, // Profile name to be displayed
+        profileImageUrl: profileImageUrl, // Profile image URL to be used
+        fetchBalance: fetchBalance, // API method to fetch balance
       ),
       body: Center(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.8, // Center horizontally
-          child: GridView.builder(
-            shrinkWrap: true, // Ensure GridView takes minimal height
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, // Two columns in the grid
-              mainAxisSpacing: 20, // Vertical spacing between grid items
-              crossAxisSpacing: 20, // Horizontal spacing between grid items
-              childAspectRatio: 1, // Square grid items
-            ),
-            itemCount: buttons.length, // Number of grid items
-            itemBuilder: (context, index) {
-              final button = buttons[index]; // Get button data for the index
-              return GestureDetector(
-                onTap: () {
-                  // Navigate to the respective screen on button tap
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => button["screen"], // Target screen
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: MediaQuery.of(context).size.height *
+                0.05, // 5% vertical padding from top & bottom
+          ),
+          child: SizedBox(
+            width:
+                MediaQuery.of(context).size.width * 0.8, // 80% width of screen
+            child: GridView.builder(
+              shrinkWrap:
+                  true, // Ensures the grid only takes the necessary space
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // 2 items per row in the grid
+                mainAxisSpacing: 20, // Space between rows
+                crossAxisSpacing: 20, // Space between columns
+                childAspectRatio: 1, // Equal width and height for grid items
+              ),
+              itemCount: buttons.length, // Total number of buttons in the grid
+              itemBuilder: (context, index) {
+                final button = buttons[index]; // Get each button data
+                return GestureDetector(
+                  // On tap, navigate to the respective screen
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => button["screen"], // Navigate
+                      ),
+                    );
+                  },
+                  child: Container(
+                    // Styling the button container
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF06426D), // Button color
+                      borderRadius:
+                          BorderRadius.circular(10), // Rounded corners
                     ),
-                  );
-                },
-                child: Container(
-                  // Button appearance
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent, // Background color
-                    borderRadius: BorderRadius.circular(10), // Rounded corners
-                  ),
-                  child: Column(
-                    // Align icon and text in the button
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        button["icon"], // Button icon
-                        size: 50, // Icon size
-                        color: Colors.white, // Icon color
-                      ),
-                      const SizedBox(height: 10), // Spacing below the icon
-                      Text(
-                        button["text"], // Button text
-                        style: const TextStyle(
-                          color: Colors.white, // Text color
-                          fontSize: 16, // Text size
+                    child: Column(
+                      mainAxisAlignment:
+                          MainAxisAlignment.center, // Center content
+                      children: [
+                        Icon(
+                          button["icon"], // Icon of the button
+                          size: 50, // Icon size
+                          color: Colors.white, // Icon color
                         ),
-                      ),
-                    ],
+                        const SizedBox(
+                            height: 10), // Space between icon and text
+                        Text(
+                          button["text"], // Text to display under icon
+                          style: const TextStyle(
+                            color: Colors.white, // Text color
+                            fontSize: 16, // Font size of the text
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),

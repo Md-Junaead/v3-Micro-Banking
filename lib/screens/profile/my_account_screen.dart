@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:v1_micro_finance/configs/routes/routes_name.dart';
-import 'package:v1_micro_finance/screens/profile/nominee_screen.dart';
 
 class UserScreen extends StatelessWidget {
   const UserScreen({Key? key}) : super(key: key);

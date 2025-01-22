@@ -35,9 +35,9 @@ flutter:
 
   # Assets declaration
   assets:
-    - assets/image_one.jpeg
-    - assets/image_two.jpeg
-    - assets/image_three.jpeg
+    - assets/images/image_one.jpeg
+    - assets/images/image_two.jpeg
+    - assets/images/image_three.jpeg
 
   # Fonts declaration
   fonts:

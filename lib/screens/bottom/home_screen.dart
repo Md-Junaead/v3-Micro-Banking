@@ -17,7 +17,7 @@ class MicroFinance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, // Hide debug banner
       home: const HomeScreen(), // Set HomeScreen as the main screen
     );
   }
@@ -31,20 +31,29 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String profileName = "User Name"; // Placeholder profile name from API
+  // Placeholder values for profile name, image, and balance
+  String profileName = "User Name";
   String profileImageUrl =
-      "https://via.placeholder.com/150"; // Placeholder profile image
-  bool isBalanceVisible = false;
-  String balanceAmount = "\$1000"; // Placeholder balance from API
+      "https://via.placeholder.com/150"; // Placeholder profile image URL
+  bool isBalanceVisible = false; // Flag to toggle balance visibility
+  String balanceAmount = "\$1000"; // Placeholder balance value
 
+  // Function to toggle balance visibility
   void toggleBalance() {
     setState(() {
-      isBalanceVisible = !isBalanceVisible;
+      isBalanceVisible = !isBalanceVisible; // Toggle the visibility state
     });
+  }
+
+  // Demo API call to simulate fetching balance
+  Future<String> fetchBalance() async {
+    await Future.delayed(const Duration(seconds: 2)); // Simulate delay
+    return "\$1500"; // Return a dummy balance after the delay
   }
 
   @override
   Widget build(BuildContext context) {
+    // List of buttons with icon, text, and the screen it navigates to
     final List<Map<String, dynamic>> buttons = [
       {"icon": Icons.attach_money, "text": "Deposit", "screen": TestScreen()},
       {
@@ -62,61 +71,68 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     ];
 
+    // Scaffold widget provides the app's structure
     return Scaffold(
+      // Custom AppBar with necessary profile data
       appBar: CustomAppBar(
-        profileName: profileName,
-        profileImageUrl: profileImageUrl,
-        onCheckBalance: toggleBalance,
-        isBalanceVisible: isBalanceVisible,
-        balanceAmount: balanceAmount,
+        profileName: profileName, // Profile name to be displayed
+        profileImageUrl: profileImageUrl, // Profile image URL to be used
+        fetchBalance: fetchBalance, // API method to fetch balance
       ),
       body: Center(
         child: Padding(
           padding: EdgeInsets.symmetric(
             vertical: MediaQuery.of(context).size.height *
-                0.05, // 5% top & bottom padding
+                0.05, // 5% vertical padding from top & bottom
           ),
           child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.8,
+            width:
+                MediaQuery.of(context).size.width * 0.8, // 80% width of screen
             child: GridView.builder(
-              shrinkWrap: true,
+              shrinkWrap:
+                  true, // Ensures the grid only takes the necessary space
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 20,
-                crossAxisSpacing: 20,
-                childAspectRatio: 1,
+                crossAxisCount: 2, // 2 items per row in the grid
+                mainAxisSpacing: 20, // Space between rows
+                crossAxisSpacing: 20, // Space between columns
+                childAspectRatio: 1, // Equal width and height for grid items
               ),
-              itemCount: buttons.length,
+              itemCount: buttons.length, // Total number of buttons in the grid
               itemBuilder: (context, index) {
-                final button = buttons[index];
+                final button = buttons[index]; // Get each button data
                 return GestureDetector(
+                  // On tap, navigate to the respective screen
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => button["screen"],
+                        builder: (context) => button["screen"], // Navigate
                       ),
                     );
                   },
                   child: Container(
+                    // Styling the button container
                     decoration: BoxDecoration(
-                      color: const Color(0xFF06426D),
-                      borderRadius: BorderRadius.circular(10),
+                      color: const Color(0xFF06426D), // Button color
+                      borderRadius:
+                          BorderRadius.circular(10), // Rounded corners
                     ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment:
+                          MainAxisAlignment.center, // Center content
                       children: [
                         Icon(
-                          button["icon"],
-                          size: 50,
-                          color: Colors.white,
+                          button["icon"], // Icon of the button
+                          size: 50, // Icon size
+                          color: Colors.white, // Icon color
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(
+                            height: 10), // Space between icon and text
                         Text(
-                          button["text"],
+                          button["text"], // Text to display under icon
                           style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
+                            color: Colors.white, // Text color
+                            fontSize: 16, // Font size of the text
                           ),
                         ),
                       ],

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:v1_micro_finance/configs/routes/routes_name.dart';
 import 'package:v1_micro_finance/screens/auth/forgot_password.dart';
-import 'package:v1_micro_finance/screens/bottom/home_screen.dart'; // Replace with the correct path
+import 'package:v1_micro_finance/screens/bottom/home_screen.dart';
+import 'package:v1_micro_finance/widgets/bottom_nav_bar.dart'; // Replace with the correct path
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _SignInScreenState extends State<SignInScreen> {
       // Navigate to Account Overview Screen on successful login
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => BottomNavBar()),
       );
     } else {
       // Show error message if fields are empty

@@ -42,7 +42,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       isBalanceVisible = true;
     });
 
-    // After 15 seconds, hide the balance and stop the sliding effect
+    // After 8 seconds, hide the balance and stop the sliding effect
     _timer = Timer(const Duration(seconds: 8), () {
       setState(() {
         isBalanceVisible = false;
@@ -60,23 +60,14 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 0.05), // 5% padding at the bottom
+      padding: const EdgeInsets.only(bottom: 0.01), // 5% padding at the bottom
       child: AppBar(
         backgroundColor: const Color(0xFF06426D), // AppBar background color
-        elevation: 0,
-        toolbarHeight: 100, // Height of the AppBar (in pixels)
+        elevation: 0, // Height of the AppBar (in pixels)
         title: Row(
           mainAxisAlignment:
               MainAxisAlignment.start, // Align elements to the start
           children: [
-            // Section 1: Drawer Icon (Left-most Section)
-            IconButton(
-              icon: const Icon(Icons.menu, size: 45, color: Colors.white),
-              onPressed: () {
-                Scaffold.of(context).openDrawer(); // Open the drawer on tap
-              },
-            ),
-
             // Section 2: Profile Picture (Middle Section)
             Container(
               margin: const EdgeInsets.symmetric(
@@ -103,28 +94,29 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   onTap: onCheckBalance, // Trigger balance check on tap
                   child: AnimatedContainer(
                     duration:
-                        const Duration(milliseconds: 300), // Smooth transition
+                        const Duration(milliseconds: 100), // Smooth transition
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
-                      color: Colors.grey, // Button background color
+                      color: Color(0xFFdfe1e6), // Button background color
                       borderRadius:
                           BorderRadius.circular(10), // Rounded corners
                     ),
                     child: AnimatedCrossFade(
                       firstChild: Text(
                         "Check Balance", // Default text when balance is not visible
-                        style: const TextStyle(color: Colors.white),
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 18),
                       ),
                       secondChild: Text(
                         isBalanceVisible
                             ? balanceAmount
                             : "", // Show balance if visible
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.black),
                       ),
                       crossFadeState: isBalanceVisible
                           ? CrossFadeState.showSecond
                           : CrossFadeState.showFirst, // Cross-fade effect
-                      duration: const Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 100),
                     ),
                   ),
                 ),

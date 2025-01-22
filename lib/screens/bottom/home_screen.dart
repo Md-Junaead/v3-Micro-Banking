@@ -5,7 +5,9 @@ import 'package:v1_micro_finance/screens/dashboard/packages_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/referrals_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/withdraw_screen.dart';
 import 'package:v1_micro_finance/test/test.dart';
+import 'package:v1_micro_finance/widgets/app_drawer.dart';
 import 'package:v1_micro_finance/widgets/appbar.dart';
+import 'package:v1_micro_finance/widgets/bottom_nav_bar.dart';
 
 void main() {
   runApp(const MicroFinance());
@@ -18,7 +20,6 @@ class MicroFinance extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false, // Hide debug banner
-      home: const HomeScreen(), // Set HomeScreen as the main screen
     );
   }
 }
@@ -79,6 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
         profileImageUrl: profileImageUrl, // Profile image URL to be used
         fetchBalance: fetchBalance, // API method to fetch balance
       ),
+      drawer: AppDrawer(),
       body: Center(
         child: Padding(
           padding: EdgeInsets.symmetric(

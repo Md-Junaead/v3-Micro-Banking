@@ -12,7 +12,7 @@ class BottomNavBar extends StatelessWidget {
       onTap: navigationProvider.updateIndex, // Updates selected index
       selectedItemColor: Colors.white, // Active icon color
       unselectedItemColor: Colors.black54, // Inactive icon color
-      backgroundColor: Colors.red, // Background color
+      backgroundColor: Color(0xFF06426D), // Background color
       type: BottomNavigationBarType.fixed, // Prevents shifting animation
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),

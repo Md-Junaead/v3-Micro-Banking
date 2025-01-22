@@ -121,7 +121,7 @@ class ProfileScreen extends StatelessWidget {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  Colors.blueAccent, // Button background color
+                                  Color(0xFF06426D), // Button background color
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(
                                     10), // Button corner radius
@@ -164,7 +164,7 @@ class ProfileScreen extends StatelessWidget {
                         borderRadius:
                             BorderRadius.circular(30), // Rounded button corners
                         color:
-                            Colors.blueAccent, // Light gray button background
+                            Color(0xFF06426D), // Light gray button background
                       ),
                       child: Row(
                         children: [

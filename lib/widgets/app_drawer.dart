@@ -1,42 +1,83 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:v1_micro_finance/providers/navigation_provider.dart';
 
 class AppDrawer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final navigationProvider = Provider.of<NavigationProvider>(context);
-
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          DrawerHeader(
-            decoration: BoxDecoration(color: Color(0xFF06426D)),
-            child: Text("Menu",
-                style: TextStyle(color: Colors.white, fontSize: 24)),
-          ),
-          _buildDrawerItem(context, Icons.home, "Home", 0),
-          _buildDrawerItem(context, Icons.info, "About Us", 1),
-          _buildDrawerItem(context, Icons.monetization_on, "Loan / Dollar", 2),
-          _buildDrawerItem(context, Icons.person, "Profile", 3),
-        ],
-      ),
-    );
+  // Function to navigate to a new screen
+  void _navigateToScreen(BuildContext context, String screenName) {
+    // Use Navigator.pushReplacementNamed or Navigator.push as per your routing strategy
+    Navigator.pushReplacementNamed(context, screenName);
   }
 
-  Widget _buildDrawerItem(
-      BuildContext context, IconData icon, String title, int index) {
-    final navigationProvider =
-        Provider.of<NavigationProvider>(context, listen: false);
-
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
-      onTap: () {
-        navigationProvider.updateIndex(index);
-        Navigator.pop(context); // Close the drawer
-      },
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      backgroundColor: Color(0xFF06426D), // Drawer background color
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment
+              .center, // Center both vertically and horizontally
+          children: [
+            ListTile(
+              leading: Icon(Icons.account_balance_wallet,
+                  color: Colors.white, size: 25), // Icon for Add Money
+              title: Text('Add Money', style: TextStyle(color: Colors.white)),
+              onTap: () =>
+                  _navigateToScreen(context, '/addMoney'), // Add Money screen
+            ),
+            ListTile(
+              leading: Icon(Icons.info,
+                  color: Colors.white, size: 25), // Icon for Package Info
+              title:
+                  Text('Package Info', style: TextStyle(color: Colors.white)),
+              onTap: () => _navigateToScreen(
+                  context, '/packageInfo'), // Package Info screen
+            ),
+            ListTile(
+              leading: Icon(Icons.receipt,
+                  color: Colors.white, size: 25), // Icon for Statement
+              title: Text('Statement', style: TextStyle(color: Colors.white)),
+              onTap: () =>
+                  _navigateToScreen(context, '/statement'), // Statement screen
+            ),
+            ExpansionTile(
+              leading: Icon(Icons.arrow_drop_down,
+                  color: Colors.white, size: 25), // Icon for Withdraw
+              title: Text('Withdraw', style: TextStyle(color: Colors.white)),
+              children: [
+                ListTile(
+                  leading: Icon(Icons.request_page,
+                      color: Colors.white, size: 25), // Icon for New request
+                  title: Text('New Request',
+                      style: TextStyle(color: Colors.white)),
+                  onTap: () => _navigateToScreen(
+                      context, '/withdrawNewRequest'), // New Request screen
+                ),
+                ListTile(
+                  leading: Icon(Icons.query_stats,
+                      color: Colors.white, size: 25), // Icon for Status
+                  title: Text('Status', style: TextStyle(color: Colors.white)),
+                  onTap: () => _navigateToScreen(
+                      context, '/withdrawStatus'), // Withdraw Status screen
+                ),
+              ],
+            ),
+            ListTile(
+              leading: Icon(Icons.link,
+                  color: Colors.white, size: 25), // Icon for Referral Link
+              title:
+                  Text('Referral Link', style: TextStyle(color: Colors.white)),
+              onTap: () => _navigateToScreen(
+                  context, '/referralLink'), // Referral Link screen
+            ),
+            ListTile(
+              leading: Icon(Icons.exit_to_app,
+                  color: Colors.white, size: 25), // Icon for Log out
+              title: Text('Log Out', style: TextStyle(color: Colors.white)),
+              onTap: () =>
+                  _navigateToScreen(context, '/logout'), // Log Out screen
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

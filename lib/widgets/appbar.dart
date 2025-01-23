@@ -62,6 +62,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 0.01), // 5% padding at the bottom
       child: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: const Color(0xFF06426D), // AppBar background color
         elevation: 0, // Height of the AppBar (in pixels)
         title: Row(
@@ -103,7 +104,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     ),
                     child: AnimatedCrossFade(
                       firstChild: Text(
-                        "Check Balance", // Default text when balance is not visible
+                        "Balance", // Default text when balance is not visible
                         style:
                             const TextStyle(color: Colors.black, fontSize: 18),
                       ),

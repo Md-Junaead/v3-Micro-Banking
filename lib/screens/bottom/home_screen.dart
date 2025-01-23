@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     // Styling the button container
                     decoration: BoxDecoration(
-                      color: const Color(0xFF06426D), // Button color
+                      color: Color(0xFFFEF7FF), // Button color
                       borderRadius:
                           BorderRadius.circular(10), // Rounded corners
                     ),
@@ -126,14 +126,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         Icon(
                           button["icon"], // Icon of the button
                           size: 50, // Icon size
-                          color: Colors.white, // Icon color
+                          color: Color(0xFF06426D), // Icon color
                         ),
                         const SizedBox(
                             height: 10), // Space between icon and text
                         Text(
                           button["text"], // Text to display under icon
                           style: const TextStyle(
-                            color: Colors.white, // Text color
+                            color: Color(0xFF06426D), // Text color
                             fontSize: 16, // Font size of the text
                           ),
                         ),

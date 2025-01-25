@@ -10,7 +10,7 @@ class MicroFinance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Finance App',
+      title: 'FINSYS',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor:
@@ -20,7 +20,7 @@ class MicroFinance extends StatelessWidget {
         ),
       ),
       // this is the initial route indicating from where our app will start
-      initialRoute: RoutesName.splashScreen,
+      initialRoute: RoutesName.signInScreen,
       onGenerateRoute: Routes.generateRoute, // Name of Open screen
     );
   }

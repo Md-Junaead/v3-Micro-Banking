@@ -7,7 +7,6 @@ import 'package:v1_micro_finance/screens/dashboard/withdraw_screen.dart';
 import 'package:v1_micro_finance/test/test.dart';
 import 'package:v1_micro_finance/widgets/app_drawer.dart';
 import 'package:v1_micro_finance/widgets/appbar.dart';
-import 'package:v1_micro_finance/widgets/bottom_nav_bar.dart';
 
 void main() {
   runApp(const MicroFinance());

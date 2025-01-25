@@ -38,6 +38,8 @@ flutter:
     - assets/images/image_one.jpeg
     - assets/images/image_two.jpeg
     - assets/images/image_three.jpeg
+    - assets/splash/splash_screen.gif
+    - assets/logos/
 
   # Fonts declaration
   fonts:

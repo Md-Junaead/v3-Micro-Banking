@@ -120,10 +120,10 @@ class _CheckBalanceScreenState extends State<CheckBalanceScreen> {
   Future<void> fetchBalanceData() async {
     // Replace the following lines with your actual API call
     setState(() {
-      depositBalance = "\1000"; // Example data, replace with API response
-      profitBalance = "\500";
-      referralBalance = "\200";
-      withdrawalBalance = "\1500";
+      depositBalance = "1000"; // Example data, replace with API response
+      profitBalance = "500";
+      referralBalance = "200";
+      withdrawalBalance = "1500";
     });
   }
 

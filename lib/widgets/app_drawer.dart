@@ -1,100 +1,121 @@
 import 'package:flutter/material.dart';
 
+// Assuming you are using the `http` package to fetch data from an API.
+// To add the http package to your project, include the following in your `pubspec.yaml`:
+// dependencies:
+//   http: ^0.14.0
+
 class AppDrawer extends StatelessWidget {
-  // Function to navigate to a new screen
-  void _navigateToScreen(BuildContext context, String screenName) {
-    Navigator.pushReplacementNamed(context, screenName);
-  }
+  final String demoUsername =
+      'Demo User'; // This should be replaced by actual data fetched from API
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Color(0xFF06426D), // Drawer background color
-      child: Column(
-        children: [
-          // Close button at the top right
-          Padding(
-            padding: EdgeInsets.only(top: 20),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: IconButton(
-                icon: Icon(Icons.close, color: Colors.white, size: 30),
-                onPressed: () => Navigator.pop(context), // Close the drawer
+      backgroundColor: Color(0xFF06426D), // Background color of the drawer
+      child: SingleChildScrollView(
+        // Makes the drawer scrollable
+        child: Column(
+          children: [
+            // Cross Icon to close the drawer
+            Padding(
+              padding: EdgeInsets.only(right: 20, top: 20),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: Icon(Icons.close, color: Colors.white),
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the drawer
+                  },
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: Center(
+            SizedBox(height: 20),
+
+            // Drawer Header Section
+            Container(
+              padding: EdgeInsets.only(top: 20),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center, // Center content
                 children: [
-                  ListTile(
-                    leading: Icon(Icons.account_balance_wallet,
-                        color: Colors.white, size: 25), // Icon for Add Money
-                    title: Text('Add Money',
-                        style: TextStyle(color: Colors.white)),
-                    onTap: () => _navigateToScreen(context, '/addMoney'),
+                  // Profile Image
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage(
+                        'assets/images/image_one.jpeg'), // User image
                   ),
-                  ListTile(
-                    leading: Icon(Icons.info,
-                        color: Colors.white, size: 25), // Icon for Package Info
-                    title: Text('Package Info',
-                        style: TextStyle(color: Colors.white)),
-                    onTap: () => _navigateToScreen(context, '/packageInfo'),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.receipt,
-                        color: Colors.white, size: 25), // Icon for Statement
-                    title: Text('Statement',
-                        style: TextStyle(color: Colors.white)),
-                    onTap: () => _navigateToScreen(context, '/statement'),
-                  ),
-                  ExpansionTile(
-                    leading: Icon(Icons.arrow_drop_down,
-                        color: Colors.white, size: 25), // Icon for Withdraw
-                    title:
-                        Text('Withdraw', style: TextStyle(color: Colors.white)),
-                    children: [
-                      ListTile(
-                        leading: Icon(Icons.request_page,
-                            color: Colors.white,
-                            size: 25), // Icon for New request
-                        title: Text('New Request',
-                            style: TextStyle(color: Colors.white)),
-                        onTap: () =>
-                            _navigateToScreen(context, '/withdrawNewRequest'),
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.query_stats,
-                            color: Colors.white, size: 25), // Icon for Status
-                        title: Text('Status',
-                            style: TextStyle(color: Colors.white)),
-                        onTap: () =>
-                            _navigateToScreen(context, '/withdrawStatus'),
-                      ),
-                    ],
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.link,
-                        color: Colors.white,
-                        size: 25), // Icon for Referral Link
-                    title: Text('Referral Link',
-                        style: TextStyle(color: Colors.white)),
-                    onTap: () => _navigateToScreen(context, '/referralLink'),
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.exit_to_app,
-                        color: Colors.white, size: 25), // Icon for Log out
-                    title:
-                        Text('Log Out', style: TextStyle(color: Colors.white)),
-                    onTap: () => _navigateToScreen(context, '/logout'),
+                  SizedBox(height: 10),
+                  // Username Text
+                  Text(
+                    demoUsername, // Demo username, replace it with actual API data
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+            SizedBox(height: 20),
+
+            // Menu Section
+            _buildMenuItem(context, Icons.account_balance_wallet, 'Add Money',
+                () {
+              Navigator.pushNamed(
+                  context, '/addMoney'); // Replace with actual navigation
+            }),
+            _buildMenuItem(context, Icons.info, 'Package Info', () {
+              Navigator.pushNamed(
+                  context, '/packageInfo'); // Replace with actual navigation
+            }),
+            _buildMenuItem(context, Icons.receipt, 'Statement', () {
+              Navigator.pushNamed(
+                  context, '/statement'); // Replace with actual navigation
+            }),
+            _buildSubMenu(context, Icons.arrow_drop_down, 'Withdraw', [
+              _buildMenuItem(context, Icons.add, 'New Request', () {
+                Navigator.pushNamed(context,
+                    '/withdrawNewRequest'); // Replace with actual navigation
+              }),
+              _buildMenuItem(context, Icons.query_stats, 'Status', () {
+                Navigator.pushNamed(context,
+                    '/withdrawStatus'); // Replace with actual navigation
+              }),
+            ]),
+            _buildMenuItem(context, Icons.link, 'Referral Link', () {
+              Navigator.pushNamed(
+                  context, '/referralLink'); // Replace with actual navigation
+            }),
+            _buildMenuItem(context, Icons.exit_to_app, 'Log Out', () {
+              Navigator.pushNamed(
+                  context, '/logout'); // Replace with actual navigation
+            }),
+          ],
+        ),
       ),
+    );
+  }
+
+  // Method to build each menu item
+  Widget _buildMenuItem(
+      BuildContext context, IconData icon, String title, VoidCallback onTap) {
+    return ListTile(
+      leading: Icon(icon, color: Colors.white),
+      title: Text(
+        title,
+        style: TextStyle(color: Colors.white),
+      ),
+      onTap: onTap,
+    );
+  }
+
+  // Method to build sub-menu with expandable options (for Withdraw)
+  Widget _buildSubMenu(BuildContext context, IconData icon, String title,
+      List<Widget> subMenuItems) {
+    return ExpansionTile(
+      leading: Icon(icon, color: Colors.white),
+      title: Text(title, style: TextStyle(color: Colors.white)),
+      children: subMenuItems,
     );
   }
 }

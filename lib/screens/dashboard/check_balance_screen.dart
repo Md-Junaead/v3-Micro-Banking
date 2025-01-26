@@ -15,51 +15,48 @@ class _CheckBalanceScreenState extends State<CheckBalanceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding:
-            const EdgeInsets.symmetric(vertical: 8.0), // 8% top & bottom space
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Part 1: Check Balance Button
-            Container(
-              width: MediaQuery.of(context).size.width *
-                  0.9, // 5% margin from left & right
-              padding: EdgeInsets.symmetric(vertical: 15),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 1),
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
-              ),
-              margin: EdgeInsets.symmetric(
-                  horizontal:
-                      MediaQuery.of(context).size.width * 0.05), // 5% margin
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(
+            kToolbarHeight + MediaQuery.of(context).size.height * 0.03),
+        child: AppBar(
+          iconTheme: IconThemeData(
+            color: Colors.white,
+            size: 30, // Customize icon color
+          ),
+          centerTitle: true,
+          title: Padding(
+            padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height *
+                    0.03), // Moves text 5% down
+            child: const Text("Balance"),
+          ),
+          backgroundColor: Color(0xFF06426D),
+          titleTextStyle: TextStyle(
+              color: Colors.white, fontSize: 35, fontWeight: FontWeight.bold),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(25)),
+          ),
+        ),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              vertical: 8.0), // 8% top & bottom space
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Part 2: Balance Buttons
+              Column(
                 children: [
-                  Icon(Icons.sticky_note_2, color: Colors.blueAccent),
-                  SizedBox(width: 10),
-                  Text("Balance",
-                      style: TextStyle(
-                          color: Colors.blueAccent,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold)),
+                  _buildBalanceButton('Deposit Balance', depositBalance),
+                  _buildBalanceButton('Profit Balance', profitBalance),
+                  _buildBalanceButton('Referral Balance', referralBalance),
+                  _buildBalanceButton('Withdrawal Balance', withdrawalBalance),
                 ],
               ),
-            ),
-            SizedBox(height: 15), // Gap between Part 1 & Part 2
-
-            // Part 2: Balance Buttons
-            Column(
-              children: [
-                _buildBalanceButton('Deposit Balance', depositBalance),
-                _buildBalanceButton('Profit Balance', profitBalance),
-                _buildBalanceButton('Referral Balance', referralBalance),
-                _buildBalanceButton('Withdrawal Balance', withdrawalBalance),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -74,7 +71,7 @@ class _CheckBalanceScreenState extends State<CheckBalanceScreen> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: Colors.black, width: 1),
-        color: Colors.blueAccent,
+        color: Color(0xFF06426D),
       ),
       child: Column(
         children: [
@@ -94,12 +91,6 @@ class _CheckBalanceScreenState extends State<CheckBalanceScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.attach_money,
-                  color: const Color.fromARGB(255, 255, 212, 18),
-                  size: 35, // Set icon size to 18px
-                ),
-                SizedBox(width: 5),
                 Text(
                   balance,
                   style: TextStyle(
@@ -120,10 +111,10 @@ class _CheckBalanceScreenState extends State<CheckBalanceScreen> {
   Future<void> fetchBalanceData() async {
     // Replace the following lines with your actual API call
     setState(() {
-      depositBalance = "\1000"; // Example data, replace with API response
-      profitBalance = "\500";
-      referralBalance = "\200";
-      withdrawalBalance = "\1500";
+      depositBalance = "1000"; // Example data, replace with API response
+      profitBalance = "500";
+      referralBalance = "200";
+      withdrawalBalance = "1500";
     });
   }
 

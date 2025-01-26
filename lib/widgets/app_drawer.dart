@@ -1,83 +1,126 @@
 import 'package:flutter/material.dart';
+import 'package:v1_micro_finance/configs/routes/routes_name.dart';
+
+// Assuming you are using the `http` package to fetch data from an API.
+// To add the http package to your project, include the following in your `pubspec.yaml`:
+// dependencies:
+//   http: ^0.14.0
 
 class AppDrawer extends StatelessWidget {
-  // Function to navigate to a new screen
-  void _navigateToScreen(BuildContext context, String screenName) {
-    // Use Navigator.pushReplacementNamed or Navigator.push as per your routing strategy
-    Navigator.pushReplacementNamed(context, screenName);
-  }
+  final String demoUsername =
+      'Demo User'; // This should be replaced by actual data fetched from API
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Color(0xFF06426D), // Drawer background color
-      child: Center(
+      backgroundColor: Color(0xFF06426D), // Background color of the drawer
+      child: SingleChildScrollView(
+        // Makes the drawer scrollable
         child: Column(
-          mainAxisAlignment: MainAxisAlignment
-              .center, // Center both vertically and horizontally
           children: [
-            ListTile(
-              leading: Icon(Icons.account_balance_wallet,
-                  color: Colors.white, size: 25), // Icon for Add Money
-              title: Text('Add Money', style: TextStyle(color: Colors.white)),
-              onTap: () =>
-                  _navigateToScreen(context, '/addMoney'), // Add Money screen
-            ),
-            ListTile(
-              leading: Icon(Icons.info,
-                  color: Colors.white, size: 25), // Icon for Package Info
-              title:
-                  Text('Package Info', style: TextStyle(color: Colors.white)),
-              onTap: () => _navigateToScreen(
-                  context, '/packageInfo'), // Package Info screen
-            ),
-            ListTile(
-              leading: Icon(Icons.receipt,
-                  color: Colors.white, size: 25), // Icon for Statement
-              title: Text('Statement', style: TextStyle(color: Colors.white)),
-              onTap: () =>
-                  _navigateToScreen(context, '/statement'), // Statement screen
-            ),
-            ExpansionTile(
-              leading: Icon(Icons.arrow_drop_down,
-                  color: Colors.white, size: 25), // Icon for Withdraw
-              title: Text('Withdraw', style: TextStyle(color: Colors.white)),
-              children: [
-                ListTile(
-                  leading: Icon(Icons.request_page,
-                      color: Colors.white, size: 25), // Icon for New request
-                  title: Text('New Request',
-                      style: TextStyle(color: Colors.white)),
-                  onTap: () => _navigateToScreen(
-                      context, '/withdrawNewRequest'), // New Request screen
+            // Cross Icon to close the drawer
+            Padding(
+              padding: EdgeInsets.only(right: 20, top: 20),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  icon: Icon(Icons.close, color: Colors.white),
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the drawer
+                  },
                 ),
-                ListTile(
-                  leading: Icon(Icons.query_stats,
-                      color: Colors.white, size: 25), // Icon for Status
-                  title: Text('Status', style: TextStyle(color: Colors.white)),
-                  onTap: () => _navigateToScreen(
-                      context, '/withdrawStatus'), // Withdraw Status screen
-                ),
-              ],
+              ),
             ),
-            ListTile(
-              leading: Icon(Icons.link,
-                  color: Colors.white, size: 25), // Icon for Referral Link
-              title:
-                  Text('Referral Link', style: TextStyle(color: Colors.white)),
-              onTap: () => _navigateToScreen(
-                  context, '/referralLink'), // Referral Link screen
+            SizedBox(height: 20),
+
+            // Drawer Header Section
+            Container(
+              padding: EdgeInsets.only(top: 20),
+              child: Column(
+                children: [
+                  // Profile Image
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: AssetImage(
+                        'assets/images/image_one.jpeg'), // User image
+                  ),
+                  SizedBox(height: 10),
+                  // Username Text
+                  Text(
+                    demoUsername, // Demo username, replace it with actual API data
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            ListTile(
-              leading: Icon(Icons.exit_to_app,
-                  color: Colors.white, size: 25), // Icon for Log out
-              title: Text('Log Out', style: TextStyle(color: Colors.white)),
-              onTap: () =>
-                  _navigateToScreen(context, '/logout'), // Log Out screen
-            ),
+            SizedBox(height: 20),
+
+            // Menu Section
+            _buildMenuItem(context, Icons.account_balance_wallet, 'Add Money',
+                () {
+              Navigator.pushNamed(context,
+                  RoutesName.depositScreen); // Replace with actual navigation
+            }),
+            _buildMenuItem(context, Icons.info, 'Package Info', () {
+              Navigator.pushNamed(context,
+                  RoutesName.packagesScreen); // Replace with actual navigation
+            }),
+            _buildMenuItem(context, Icons.receipt, 'Statement', () {
+              Navigator.pushNamed(
+                  context, '/statement'); // Replace with actual navigation
+            }),
+            _buildSubMenu(context, Icons.arrow_drop_down, 'Withdraw', [
+              _buildMenuItem(context, Icons.add, 'New Request', () {
+                Navigator.pushNamed(
+                    context,
+                    RoutesName
+                        .withdrawScreen); // Replace with actual navigation
+              }),
+              _buildMenuItem(context, Icons.query_stats, 'Status', () {
+                Navigator.pushNamed(
+                    context,
+                    RoutesName
+                        .withdrawScreen); // Replace with actual navigation
+              }),
+            ]),
+            _buildMenuItem(context, Icons.link, 'Referral Link', () {
+              Navigator.pushNamed(context,
+                  RoutesName.referralsScreen); // Replace with actual navigation
+            }),
+            _buildMenuItem(context, Icons.exit_to_app, 'Log Out', () {
+              Navigator.pushNamed(
+                  context, '/logout'); // Replace with actual navigation
+            }),
           ],
         ),
       ),
+    );
+  }
+
+  // Method to build each menu item
+  Widget _buildMenuItem(
+      BuildContext context, IconData icon, String title, VoidCallback onTap) {
+    return ListTile(
+      leading: Icon(icon, color: Colors.white),
+      title: Text(
+        title,
+        style: TextStyle(color: Colors.white),
+      ),
+      onTap: onTap,
+    );
+  }
+
+  // Method to build sub-menu with expandable options (for Withdraw)
+  Widget _buildSubMenu(BuildContext context, IconData icon, String title,
+      List<Widget> subMenuItems) {
+    return ExpansionTile(
+      leading: Icon(icon, color: Colors.white),
+      title: Text(title, style: TextStyle(color: Colors.white)),
+      children: subMenuItems,
     );
   }
 }

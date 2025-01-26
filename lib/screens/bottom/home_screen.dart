@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:v1_micro_finance/screens/auth/signin_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/check_balance_screen.dart';
+import 'package:v1_micro_finance/screens/dashboard/deposit_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/packages_screen.dart';
+import 'package:v1_micro_finance/screens/dashboard/quick_loan_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/referrals_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/withdraw_screen.dart';
-import 'package:v1_micro_finance/test/test.dart';
 import 'package:v1_micro_finance/widgets/app_drawer.dart';
 import 'package:v1_micro_finance/widgets/appbar.dart';
-import 'package:v1_micro_finance/widgets/bottom_nav_bar.dart';
 
 void main() {
   runApp(const MicroFinance());
@@ -56,7 +56,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // List of buttons with icon, text, and the screen it navigates to
     final List<Map<String, dynamic>> buttons = [
-      {"icon": Icons.attach_money, "text": "Deposit", "screen": TestScreen()},
+      {
+        "icon": Icons.attach_money,
+        "text": "Deposit",
+        "screen": DepositScreen()
+      },
       {
         "icon": Icons.account_balance,
         "text": "Check Balance",
@@ -64,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       {"icon": Icons.money_off, "text": "Withdraw", "screen": WithdrawScreen()},
       {"icon": Icons.people, "text": "Referrals", "screen": ReferralsScreen()},
-      {"icon": Icons.speed, "text": "Quick Loan", "screen": SignInScreen()},
+      {"icon": Icons.speed, "text": "Quick Loan", "screen": QuickLoanScreen()},
       {
         "icon": Icons.card_giftcard,
         "text": "Packages",
@@ -115,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Container(
                     // Styling the button container
                     decoration: BoxDecoration(
-                      color: const Color(0xFF06426D), // Button color
+                      color: Color(0xFFFEF7FF), // Button color
                       borderRadius:
                           BorderRadius.circular(10), // Rounded corners
                     ),
@@ -126,14 +130,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         Icon(
                           button["icon"], // Icon of the button
                           size: 50, // Icon size
-                          color: Colors.white, // Icon color
+                          color: Color(0xFF06426D), // Icon color
                         ),
                         const SizedBox(
                             height: 10), // Space between icon and text
                         Text(
                           button["text"], // Text to display under icon
                           style: const TextStyle(
-                            color: Colors.white, // Text color
+                            color: Color(0xFF06426D), // Text color
                             fontSize: 16, // Font size of the text
                           ),
                         ),

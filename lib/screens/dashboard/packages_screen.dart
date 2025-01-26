@@ -1,24 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:v1_micro_finance/configs/routes/routes_name.dart';
 import 'package:v1_micro_finance/screens/dashboard/deposit_screen.dart';
+import 'package:v1_micro_finance/widgets/comon_appbar.dart';
 
 class PackagesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Package Details',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 24, // Updated font size
-            fontWeight: FontWeight.bold, // Updated font weight
-            color: Colors.white, // Updated color
-          ),
-        ),
-        centerTitle: true, // Center the AppBar title
-        backgroundColor: Colors.blue, // Updated AppBar background color
-      ),
+      appBar: const CommonAppBar(title: "Package"), // Set dynamic title
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(

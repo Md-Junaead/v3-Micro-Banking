@@ -118,7 +118,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14,
-                    color: Colors.blue,
+                    color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -132,7 +132,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   Navigator.pushNamed(context, RoutesName.signupScreen);
                 },
                 child: Text(
-                  'New to Bank Apps? Sign Up',
+                  'New to FINSYS? Sign Up',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14,

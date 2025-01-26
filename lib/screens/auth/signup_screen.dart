@@ -19,14 +19,9 @@ class _SignupScreenState extends State<SignupScreen> {
   // Controllers for text fields
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController genderController = TextEditingController();
-  final TextEditingController nidController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
-  final TextEditingController dobController = TextEditingController();
-  final TextEditingController addressController = TextEditingController();
 
   File? uploadedImage;
 
@@ -58,14 +53,9 @@ class _SignupScreenState extends State<SignupScreen> {
     try {
       final request = http.MultipartRequest('POST', Uri.parse(apiUrl));
       request.fields['name'] = fullNameController.text;
-      request.fields['gender'] = genderController.text;
-      request.fields['cellNo'] = phoneController.text;
-      request.fields['nid'] = nidController.text;
       request.fields['email'] = emailController.text;
       request.fields['password'] = passwordController.text;
       request.fields['confirmPassword'] = confirmPasswordController.text;
-      request.fields['dob'] = dobController.text;
-      request.fields['address'] = addressController.text;
 
       if (uploadedImage != null) {
         request.files.add(await http.MultipartFile.fromPath(
@@ -111,10 +101,6 @@ class _SignupScreenState extends State<SignupScreen> {
               buildTextField(fullNameController, 'Full Name'),
               buildTextField(emailController, 'Email',
                   keyboardType: TextInputType.emailAddress),
-              buildTextField(phoneController, 'Phone Number',
-                  keyboardType: TextInputType.phone),
-              buildTextField(dobController, 'Date of Birth (MM/DD/YYYY)'),
-              buildTextField(addressController, 'Address'),
               buildTextField(passwordController, 'Password', obscureText: true),
               buildTextField(confirmPasswordController, 'Confirm Password',
                   obscureText: true),

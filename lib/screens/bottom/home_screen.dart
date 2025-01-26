@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:v1_micro_finance/screens/auth/signin_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/check_balance_screen.dart';
+import 'package:v1_micro_finance/screens/dashboard/deposit_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/packages_screen.dart';
+import 'package:v1_micro_finance/screens/dashboard/quick_loan_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/referrals_screen.dart';
 import 'package:v1_micro_finance/screens/dashboard/withdraw_screen.dart';
-import 'package:v1_micro_finance/test/test.dart';
 import 'package:v1_micro_finance/widgets/app_drawer.dart';
 import 'package:v1_micro_finance/widgets/appbar.dart';
 
@@ -55,7 +56,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     // List of buttons with icon, text, and the screen it navigates to
     final List<Map<String, dynamic>> buttons = [
-      {"icon": Icons.attach_money, "text": "Deposit", "screen": TestScreen()},
+      {
+        "icon": Icons.attach_money,
+        "text": "Deposit",
+        "screen": DepositScreen()
+      },
       {
         "icon": Icons.account_balance,
         "text": "Check Balance",
@@ -63,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       {"icon": Icons.money_off, "text": "Withdraw", "screen": WithdrawScreen()},
       {"icon": Icons.people, "text": "Referrals", "screen": ReferralsScreen()},
-      {"icon": Icons.speed, "text": "Quick Loan", "screen": SignInScreen()},
+      {"icon": Icons.speed, "text": "Quick Loan", "screen": QuickLoanScreen()},
       {
         "icon": Icons.card_giftcard,
         "text": "Packages",

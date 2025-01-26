@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:v1_micro_finance/configs/routes/routes_name.dart';
 
 // Assuming you are using the `http` package to fetch data from an API.
 // To add the http package to your project, include the following in your `pubspec.yaml`:
@@ -61,12 +62,12 @@ class AppDrawer extends StatelessWidget {
             // Menu Section
             _buildMenuItem(context, Icons.account_balance_wallet, 'Add Money',
                 () {
-              Navigator.pushNamed(
-                  context, '/addMoney'); // Replace with actual navigation
+              Navigator.pushNamed(context,
+                  RoutesName.depositScreen); // Replace with actual navigation
             }),
             _buildMenuItem(context, Icons.info, 'Package Info', () {
-              Navigator.pushNamed(
-                  context, '/packageInfo'); // Replace with actual navigation
+              Navigator.pushNamed(context,
+                  RoutesName.packagesScreen); // Replace with actual navigation
             }),
             _buildMenuItem(context, Icons.receipt, 'Statement', () {
               Navigator.pushNamed(
@@ -74,17 +75,21 @@ class AppDrawer extends StatelessWidget {
             }),
             _buildSubMenu(context, Icons.arrow_drop_down, 'Withdraw', [
               _buildMenuItem(context, Icons.add, 'New Request', () {
-                Navigator.pushNamed(context,
-                    '/withdrawNewRequest'); // Replace with actual navigation
+                Navigator.pushNamed(
+                    context,
+                    RoutesName
+                        .withdrawScreen); // Replace with actual navigation
               }),
               _buildMenuItem(context, Icons.query_stats, 'Status', () {
-                Navigator.pushNamed(context,
-                    '/withdrawStatus'); // Replace with actual navigation
+                Navigator.pushNamed(
+                    context,
+                    RoutesName
+                        .withdrawScreen); // Replace with actual navigation
               }),
             ]),
             _buildMenuItem(context, Icons.link, 'Referral Link', () {
-              Navigator.pushNamed(
-                  context, '/referralLink'); // Replace with actual navigation
+              Navigator.pushNamed(context,
+                  RoutesName.referralsScreen); // Replace with actual navigation
             }),
             _buildMenuItem(context, Icons.exit_to_app, 'Log Out', () {
               Navigator.pushNamed(
